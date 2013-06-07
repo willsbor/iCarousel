@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
-  s.name         = "iCarousel"
-  s.version      = "1.7.4"
+  s.name         = "iCarousel_kang"
+  s.version      = "1.7.4.1"
   s.license      = { :type => 'zlib', :file => 'LICENCE.md' }
-  s.summary      = "A class designed to simplify the implementation of various types of carousel."
-  s.homepage     = "https://github.com/nicklockwood/iCarousel"
-  s.authors      = { "Nick Lockwood" => "support@charcoaldesign.co.uk" }  
-  s.source       = { :git => "https://github.com/nicklockwood/iCarousel.git", :tag => "1.7.4" }
+  s.summary      = "A class designed to simplify the implementation of various types of carousel. and Kang Modified. original version : https://github.com/nicklockwood/iCarousel ."
+  s.homepage     = "https://github.com/willsbor/iCarousel"
+  s.authors      = { "Nick Lockwood" => "support@charcoaldesign.co.uk", "willsbor Kang" => "willsbor@gmail.com" }  
+  s.source       = { :git => "https://github.com/nicklockwood/iCarousel.git", :tag => "#{s.version}" }
   s.source_files = 'iCarousel'
   s.requires_arc = false
   s.frameworks = 'QuartzCore'
