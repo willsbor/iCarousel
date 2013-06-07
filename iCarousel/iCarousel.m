@@ -153,6 +153,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
 @synthesize ignorePerpendicularSwipes = _ignorePerpendicularSwipes;
 @synthesize animationDisableCount = _animationDisableCount;
 @synthesize centerItemWhenSelected = _centerItemWhenSelected;
+@synthesize scrollOnlyOneItemPreAction = _scrollOnlyOneItemPreAction;
 
 #pragma mark -
 #pragma mark Initialisation
@@ -176,6 +177,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
     _scrollToItemBoundary = YES;
     _ignorePerpendicularSwipes = YES;
     _centerItemWhenSelected = YES;
+    _scrollOnlyOneItemPreAction = NO;
     
     _contentView = [[UIView alloc] initWithFrame:self.bounds];
     
@@ -1769,6 +1771,12 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
 - (void)startDecelerating
 {
     CGFloat distance = [self decelerationDistance];
+    
+    if (_scrollOnlyOneItemPreAction) {
+        distance = MIN(0.5, distance);
+        distance = MAX(-0.5, distance);
+    }
+    
     _startOffset = _scrollOffset;
     _endOffset = _startOffset + distance;
     if (_stopAtItemBoundary)
