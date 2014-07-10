@@ -135,6 +135,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
     _scrollToItemBoundary = YES;
     _ignorePerpendicularSwipes = YES;
     _centerItemWhenSelected = YES;
+    _scrollOnlyOneItemPreAction = NO;
     
     _contentView = [[UIView alloc] initWithFrame:self.bounds];
     
@@ -1699,6 +1700,17 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
         }
     }
     distance = _endOffset - _startOffset;
+    
+    if (_scrollOnlyOneItemPreAction && _stopAtItemBoundary) {
+        if (distance > 1) {
+            _endOffset -= 1.0 * floorf(distance);
+            distance = _endOffset - _startOffset;
+        }
+        else if (distance < -1.0) {
+            _endOffset -= 1.0 * ceilf(distance);
+            distance = _endOffset - _startOffset;
+        }
+    }
     
     _startTime = CACurrentMediaTime();
     _scrollDuration = fabsf(distance) / fabsf(0.5f * _startVelocity);   

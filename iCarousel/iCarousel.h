@@ -133,6 +133,7 @@ typedef NS_ENUM(NSUInteger, iCarouselOption)
 @property (nonatomic, readonly, getter = isDragging) BOOL dragging;
 @property (nonatomic, readonly, getter = isDecelerating) BOOL decelerating;
 @property (nonatomic, readonly, getter = isScrolling) BOOL scrolling;
+@property (nonatomic, assign) BOOL scrollOnlyOneItemPreAction;
 
 - (void)scrollByOffset:(CGFloat)offset duration:(NSTimeInterval)duration;
 - (void)scrollToOffset:(CGFloat)offset duration:(NSTimeInterval)duration;
