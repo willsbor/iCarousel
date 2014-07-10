@@ -76,7 +76,7 @@
 - (CGFloat)carouselItemWidth:(__unused iCarousel *)carousel { return 0; }
 - (CATransform3D)carousel:(__unused iCarousel *)carousel
    itemTransformForOffset:(__unused CGFloat)offset
-            baseTransform:(CATransform3D)transform { return transform; }
+            baseTransform:(CATransform3D)transform index:(NSUInteger)index { return transform; }
 - (CGFloat)carousel:(__unused iCarousel *)carousel
      valueForOption:(__unused iCarouselOption)option
         withDefault:(CGFloat)value { return value; }
@@ -525,7 +525,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
     return _delegate? [_delegate carousel:self valueForOption:option withDefault:value]: value;
 }
 
-- (CATransform3D)transformForItemViewWithOffset:(CGFloat)offset
+- (CATransform3D)transformForItemViewWithOffset:(CGFloat)offset index:(NSInteger)index
 {   
     //set up base transform
     CATransform3D transform = CATransform3DIdentity;
@@ -537,7 +537,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
     {
         case iCarouselTypeCustom:
         {
-            return [_delegate carousel:self itemTransformForOffset:offset baseTransform:transform];
+            return [_delegate carousel:self itemTransformForOffset:offset baseTransform:transform index:index];
         }
         case iCarouselTypeLinear:
         {
@@ -883,7 +883,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
     }
     
     //calculate transform
-    CATransform3D transform = [self transformForItemViewWithOffset:offset];
+    CATransform3D transform = [self transformForItemViewWithOffset:offset index:index];
     
     //transform view
     view.superview.layer.transform = transform;
